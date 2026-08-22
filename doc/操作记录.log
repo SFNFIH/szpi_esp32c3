@@ -130,3 +130,18 @@ Registry 搜索结果：
   - 可选：配置 Trusted Uploader 后推送标签 gxhtc3-v0.1.0
 操作结果：部分完成（打包就绪，上传待凭据）
 --------------------------------------------------------------------------------
+
+[2026-08-22 11:39:00 UTC] 用户已配置 GitHub Secret IDF_COMPONENT_API_TOKEN
+--------------------------------------------------------------------------------
+操作类型：组件发布
+操作内容：
+  1. 用户已在 GitHub 仓库 SFNFIH/szpi_esp32c3 添加 IDF_COMPONENT_API_TOKEN
+  2. 重新触发 staging 上传工作流（run #32570863679）
+  3. 工作流仍未执行：GitHub Actions 账户 billing 锁定
+  4. Cloud Agent 本地环境未注入该 Token，无法使用 compote CLI 上传
+后续方案：
+  A. 修复 GitHub billing 后重新运行 staging 工作流
+  B. 将 IDF_COMPONENT_API_TOKEN 同步到 Cloud Agent 环境 Secrets，由 Agent 执行 compote 上传
+  C. 用户在本地执行 compote registry login 与 component upload
+操作结果：待续（凭据已就绪，上传通道未通）
+--------------------------------------------------------------------------------
