@@ -92,3 +92,23 @@ PR 链接：https://github.com/SFNFIH/szpi_esp32c3/pull/1
   └── build/          （构建产物，已忽略）
 操作结果：成功
 --------------------------------------------------------------------------------
+
+[2026-08-22 11:25:00 UTC] 集成 SZPI 外设驱动（ESP Component Registry）
+--------------------------------------------------------------------------------
+操作类型：外设驱动开发
+Registry 搜索结果：
+  - 未找到 szpi / lckfb 专用 BSP 组件
+  - 已选用 Registry 组件：
+    * espressif/esp_lcd_touch_cst816s — CST816S 电容触摸
+    * espressif/esp_codec_dev — ES8311 音频编解码
+  - ST7789 LCD 使用 ESP-IDF 内置 esp_lcd 驱动
+  - GXHTC3 温湿度：Registry 无对应组件，新增本地 components/gxhtc3
+  - QMI8658C IMU：采用本地 I2C 驱动（Registry 有 esp-idf-lib/qmi8658c）
+新增/修改：
+  1. components/gxhtc3/ — GXHTC3 温湿度驱动
+  2. components/szpi_drivers/ — 外设统一管理（LCD/触摸/IMU/温湿度/音频）
+  3. 更新 board_pins.h — I2C 地址与触摸引脚定义
+  4. 更新 main.c — 外设初始化与循环演示
+  5. 更新 sdkconfig.defaults — CST816S 与 GPIO11/I2S 配置
+操作结果：成功
+--------------------------------------------------------------------------------

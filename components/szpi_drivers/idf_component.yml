@@ -1,0 +1,9 @@
+## IDF Component Manager Manifest File
+dependencies:
+  idf: ">=5.0"
+  espressif/esp_lcd_touch_cst816s: "^1.1.2"
+  espressif/esp_codec_dev: "^1.6.2"
+  gxhtc3:
+    path: ../gxhtc3
+  board:
+    path: ../board
