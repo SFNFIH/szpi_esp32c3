@@ -2,11 +2,14 @@
 #include <esp_log.h>
 #include <nvs_flash.h>
 
+#include <app/server/CommissioningWindowManager.h>
+#include <app/server/Server.h>
 #include <esp_matter.h>
 #include <esp_matter_console.h>
 
 #include <app_priv.h>
 #include <app_reset.h>
+#include <app_display.h>
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
 #include <platform/ESP32/OpenthreadLauncher.h>
@@ -32,10 +35,12 @@ static void app_event_cb(const chip::DeviceLayer::ChipDeviceEvent *event, intptr
         break;
     case chip::DeviceLayer::DeviceEventType::kCommissioningComplete:
         ESP_LOGI(TAG, "Commissioning complete");
+        app_display_show_dashboard();
         app_driver_update_matter_values();
         break;
     case chip::DeviceLayer::DeviceEventType::kCommissioningWindowOpened:
         ESP_LOGI(TAG, "Commissioning window opened");
+        app_display_show_commissioning();
         break;
     case chip::DeviceLayer::DeviceEventType::kCommissioningWindowClosed:
         ESP_LOGI(TAG, "Commissioning window closed");
@@ -89,6 +94,8 @@ extern "C" void app_main(void)
     }
     ESP_ERROR_CHECK(err);
 
+    ESP_ERROR_CHECK(app_display_init());
+
     app_driver_handle_t sensor_handle = app_driver_sensor_init();
     app_driver_handle_t button_handle = app_driver_button_init();
     if (button_handle) {
@@ -137,6 +144,12 @@ extern "C" void app_main(void)
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "Matter start failed: %s", esp_err_to_name(err));
         return;
+    }
+
+    if (chip::Server::GetInstance().GetFabricTable().FabricCount() > 0) {
+        app_display_show_dashboard();
+    } else {
+        app_display_show_commissioning();
     }
 
 #if CONFIG_ENABLE_CHIP_SHELL

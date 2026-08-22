@@ -10,6 +10,7 @@
 #include "board_pins.h"
 #include "szpi_env.h"
 #include "szpi_i2c.h"
+#include "app_display.h"
 
 using namespace chip::app::Clusters;
 using namespace esp_matter;
@@ -55,6 +56,7 @@ static esp_err_t update_matter_from_env(void)
 
     ESP_LOGI(TAG, "Matter updated: temp=%.1f C humidity=%.1f %%RH",
              s_env.temperature_c, s_env.humidity_rh);
+    app_display_update_sensors(s_env.temperature_c, s_env.humidity_rh);
     return ESP_OK;
 }
 

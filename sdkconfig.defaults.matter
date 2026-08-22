@@ -1,6 +1,5 @@
 # Matter build profile (used when ESP_MATTER_PATH is set)
-
-CONFIG_SZPI_MATTER_MINIMAL=y
+# LCD + LVGL enabled for on-screen commissioning QR code
 
 CONFIG_BT_ENABLED=y
 CONFIG_BT_NIMBLE_ENABLED=y

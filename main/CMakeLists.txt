@@ -3,6 +3,7 @@ if(DEFINED ENV{ESP_MATTER_PATH})
         "app_main.cpp"
         "app_driver.cpp"
         "app_reset.cpp"
+        "app_display.cpp"
     )
     set(MAIN_PRIV_INCLUDES "." "${ESP_MATTER_PATH}/examples/common/utils")
 
