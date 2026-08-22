@@ -1,0 +1,10 @@
+menu "SZPI Drivers"
+
+    config SZPI_MATTER_MINIMAL
+        bool "Minimal drivers (I2C + GXHTC3 only, for Matter build)"
+        default n
+        help
+            When enabled, only szpi_i2c and szpi_env are compiled.
+            Disable LCD, touch, IMU, audio and LVGL to save flash/RAM.
+
+endmenu

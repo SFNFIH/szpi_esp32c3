@@ -2,6 +2,7 @@
 
 #include <string.h>
 #include "board_pins.h"
+#include "driver/gpio.h"
 #include "esp_check.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"

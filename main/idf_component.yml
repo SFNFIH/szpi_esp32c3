@@ -3,3 +3,4 @@ dependencies:
   idf: ">=5.0"
   szpi_drivers:
     path: ../components/szpi_drivers
+  espressif/button: "^4.1.3"
