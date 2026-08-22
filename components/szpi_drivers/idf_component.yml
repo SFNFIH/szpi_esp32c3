@@ -3,7 +3,8 @@ dependencies:
   idf: ">=5.0"
   espressif/esp_lcd_touch_cst816s: "^1.1.2"
   espressif/esp_codec_dev: "^1.6.2"
-  gxhtc3:
-    path: ../gxhtc3
+  SFNFIH/gxhtc3:
+    version: "^0.1.0"
+    override_path: "../gxhtc3"
   board:
     path: ../board

@@ -1,0 +1,24 @@
+name: Upload GXHTC3 to ESP Component Registry (production)
+
+on:
+  push:
+    tags:
+      - 'gxhtc3-v*'
+  workflow_dispatch:
+
+jobs:
+  upload_components:
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Upload gxhtc3 to production registry
+        uses: espressif/upload-components-ci-action@v2
+        with:
+          components: "gxhtc3: components/gxhtc3"
+          namespace: "SFNFIH"
+          version: "git"
