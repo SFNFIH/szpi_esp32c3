@@ -171,3 +171,25 @@ Registry 搜索结果：
   - Registry 上传工作流与 Secret 配置可日后恢复
 操作结果：已记录，后续按需再续
 --------------------------------------------------------------------------------
+
+[2026-08-22 12:10:00 UTC] 集成 LVGL 图形界面
+--------------------------------------------------------------------------------
+操作类型：功能开发
+操作内容：
+  1. 添加 espressif/esp_lvgl_port ^2.9.0 依赖
+  2. 新建 components/szpi_drivers/szpi_lvgl.c/h：
+     - lvgl_port_init / lvgl_port_add_disp / lvgl_port_add_touch
+     - 显示旋转与 ST7789 一致（swap_xy + mirror_x）
+     - 双缓冲 partial buffer（240×40 像素）
+  3. 重构 main.c：LVGL 仪表盘界面，500ms 刷新温湿度/IMU/触摸/按键
+  4. 移除 szpi_periph 填色 demo 循环
+  5. sdkconfig.defaults 启用 LVGL 字体与 Label 组件
+涉及文件：
+  - components/szpi_drivers/idf_component.yml
+  - components/szpi_drivers/szpi_lvgl.c, include/szpi_lvgl.h
+  - components/szpi_drivers/CMakeLists.txt
+  - components/szpi_drivers/szpi_periph.c, include/szpi_periph.h
+  - main/main.c
+  - sdkconfig.defaults
+操作结果：代码已提交 demo 分支
+--------------------------------------------------------------------------------

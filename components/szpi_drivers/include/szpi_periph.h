@@ -23,7 +23,6 @@ typedef struct {
 } szpi_periph_t;
 
 esp_err_t szpi_periph_init(szpi_periph_t *periph);
-void szpi_periph_demo_loop(szpi_periph_t *periph);
 
 #ifdef __cplusplus
 }

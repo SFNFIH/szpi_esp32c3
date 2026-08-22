@@ -33,7 +33,6 @@ esp_err_t szpi_periph_init(szpi_periph_t *periph)
 
     if (szpi_lcd_init(&periph->lcd) == ESP_OK) {
         periph->lcd_ready = true;
-        szpi_lcd_fill_color(&periph->lcd, 0x001F);
     } else {
         ESP_LOGW(TAG, "LCD init failed");
     }
@@ -67,35 +66,4 @@ esp_err_t szpi_periph_init(szpi_periph_t *periph)
              periph->lcd_ready, periph->touch_ready, periph->imu_ready,
              periph->env_ready, periph->audio_ready);
     return ESP_OK;
-}
-
-void szpi_periph_demo_loop(szpi_periph_t *periph)
-{
-    static int color_index = 0;
-    static const uint16_t colors[] = { 0xF800, 0x07E0, 0x001F, 0xFFE0, 0xF81F };
-
-    if (periph->lcd_ready) {
-        szpi_lcd_fill_color(&periph->lcd, colors[color_index % (sizeof(colors) / sizeof(colors[0]))]);
-        color_index++;
-    }
-
-    if (periph->touch_ready) {
-        szpi_touch_poll(&periph->touch);
-        if (periph->touch.touched) {
-            ESP_LOGI(TAG, "Touch: x=%u y=%u", periph->touch.x, periph->touch.y);
-        }
-    }
-
-    if (periph->imu_ready && szpi_imu_read(&periph->imu) == ESP_OK) {
-        ESP_LOGI(TAG, "IMU: acc(%.2f, %.2f, %.2f) gyro(%.2f, %.2f, %.2f)",
-                 periph->imu.accel_x, periph->imu.accel_y, periph->imu.accel_z,
-                 periph->imu.gyro_x, periph->imu.gyro_y, periph->imu.gyro_z);
-    }
-
-    if (periph->env_ready && szpi_env_read(&periph->env) == ESP_OK) {
-        ESP_LOGI(TAG, "ENV: temp=%.1f C humidity=%.1f %%RH",
-                 periph->env.temperature_c, periph->env.humidity_rh);
-    }
-
-    ESP_LOGI(TAG, "Button GPIO%d=%d", BOARD_GPIO_USER_BTN, gpio_get_level(BOARD_GPIO_USER_BTN));
 }
