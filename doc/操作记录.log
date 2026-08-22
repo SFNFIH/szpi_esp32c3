@@ -112,3 +112,21 @@ Registry 搜索结果：
   5. 更新 sdkconfig.defaults — CST816S 与 GPIO11/I2S 配置
 操作结果：成功
 --------------------------------------------------------------------------------
+
+[2026-08-22 11:29:00 UTC] 打包 GXHTC3 组件并准备上传至 ESP Component Registry
+--------------------------------------------------------------------------------
+操作类型：组件发布
+参考文档：https://docs.espressif.com/projects/idf-component-manager/en/latest/publish/tutorial_to_package_and_upload.html
+已完成（Stage 2 打包文件）：
+  1. components/gxhtc3/idf_component.yml — 版本 0.1.0、MIT、仓库路径等元数据
+  2. components/gxhtc3/LICENSE — MIT 许可证全文
+  3. components/gxhtc3/README.md — 使用说明与依赖示例
+  4. compote component pack 验证通过（gxhtc3_0.1.0.tgz）
+  5. .github/workflows/upload-gxhtc3-component-staging.yml — 上传至 staging
+  6. .github/workflows/upload-gxhtc3-component.yml — 打标签后上传至 production
+  7. 更新 szpi_drivers 依赖为 SFNFIH/gxhtc3（本地 override_path 开发）
+待用户完成（Stage 3/4 上传）：
+  - 在 GitHub Secrets 添加 IDF_COMPONENT_API_TOKEN
+  - 可选：配置 Trusted Uploader 后推送标签 gxhtc3-v0.1.0
+操作结果：部分完成（打包就绪，上传待凭据）
+--------------------------------------------------------------------------------
