@@ -61,3 +61,34 @@ PR 链接：https://github.com/SFNFIH/szpi_esp32c3/pull/1
 保留分支：main（本地）、demo（本地及远程）
 操作结果：成功
 --------------------------------------------------------------------------------
+
+[2026-08-22 11:17:00 UTC] 按 ESP-IDF 官方推荐格式整理项目结构
+--------------------------------------------------------------------------------
+操作类型：项目重构
+操作内容：
+  1. 新建 components/board/ 组件，将板级引脚定义迁移至 include/board_pins.h
+  2. 为 board 组件添加 CMakeLists.txt 与 Kconfig
+  3. 更新 main/CMakeLists.txt，添加 REQUIRES board 依赖
+  4. 新增 main/idf_component.yml（Component Manager 清单）
+  5. 删除 main/board_pins.h（已迁移至 board 组件）
+  6. 新建 bootloader_components/ 目录占位（.gitkeep）
+  7. managed_components/、build/、sdkconfig、dependencies.lock 保持 .gitignore 忽略（构建时自动生成）
+整理后目录结构：
+  szpi_esp32c3/
+  ├── CMakeLists.txt
+  ├── sdkconfig.defaults
+  ├── bootloader_components/
+  ├── components/
+  │   └── board/
+  │       ├── CMakeLists.txt
+  │       ├── Kconfig
+  │       └── include/
+  │           └── board_pins.h
+  ├── main/
+  │   ├── CMakeLists.txt
+  │   ├── idf_component.yml
+  │   └── main.c
+  ├── doc/
+  └── build/          （构建产物，已忽略）
+操作结果：成功
+--------------------------------------------------------------------------------

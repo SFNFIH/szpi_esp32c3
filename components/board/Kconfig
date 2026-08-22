@@ -1,0 +1,10 @@
+menu "Board Configuration"
+
+    config BOARD_LCKFB_SZPI_ESP32C3
+        bool "LCKFB SZPI ESP32-C3 (立创·实战派)"
+        default y
+        help
+            Pin definitions for the LCKFB SZPI ESP32-C3 development board.
+            Reference: https://wiki.lckfb.com/zh-hans/szpi-esp32c3/
+
+endmenu
