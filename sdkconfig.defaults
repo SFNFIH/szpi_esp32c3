@@ -1,0 +1,8 @@
+# LCKFB SZPI ESP32-C3 (立创·实战派 ESP32-C3) defaults
+CONFIG_IDF_TARGET="esp32c3"
+
+# 8MB external flash on this board
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+
+# Console on UART0 (CH343P USB-to-serial)
+CONFIG_ESP_CONSOLE_UART_DEFAULT=y
