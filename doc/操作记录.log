@@ -202,3 +202,16 @@ Registry 搜索结果：
 依赖要求：ESP-IDF v5.5.x + esp-matter release/v1.6
 操作结果：已提交 cursor/matter-gxhtc3-137b 分支
 --------------------------------------------------------------------------------
+
+[2026-08-22 12:08:00 UTC] Matter 配网 QR 码 LVGL 显示
+--------------------------------------------------------------------------------
+操作类型：功能开发
+操作内容：
+  1. 新增 main/app_display.cpp/h：LVGL lv_qrcode 显示 Matter 配网 QR 码
+  2. 使用 GetQRCode / GetManualPairingCode (OnboardingCodesUtil)
+  3. 未配网显示 QR + Manual Code，配网完成后切换温湿度仪表盘
+  4. Matter 模式启用 LCD/LVGL（移除 CONFIG_SZPI_MATTER_MINIMAL）
+  5. sdkconfig.defaults.matter 启用 CONFIG_LV_USE_QRCODE
+涉及文件：main/app_display.*, app_main.cpp, app_driver.cpp, sdkconfig.defaults.matter, doc/MATTER.md
+操作结果：已提交
+--------------------------------------------------------------------------------

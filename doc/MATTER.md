@@ -47,6 +47,17 @@ idf.py flash monitor
 
 > 设置 `ESP_MATTER_PATH` 后，工程会自动加载 `sdkconfig.defaults.matter` 与 Matter 分区表，并编译 `main/app_main.cpp`（而非 LVGL 版 `main.c`）。
 
+烧录后屏幕会显示 **Matter 配网 QR 码**及 Manual Pairing Code；配网完成后自动切换为温湿度仪表盘。
+
+### 屏幕显示
+
+| 状态 | 屏幕内容 |
+|------|----------|
+| 未配网 | LVGL QR 码 + Manual Pairing Code |
+| 已配网 | GXHTC3 温湿度实时数据 |
+
+串口监视器仍会打印 QR 字符串，便于调试。
+
 ## 配网（Commissioning）
 
 1. 烧录后打开串口监视器，查看 **QR 码 URL** 或 **Manual Pairing Code**
@@ -76,9 +87,9 @@ idf.py flash monitor
 | 模式 | 条件 | 入口 |
 |------|------|------|
 | LVGL 仪表盘 | 不设置 `ESP_MATTER_PATH` | `main/main.c` |
-| Matter 温湿度 | 设置 `ESP_MATTER_PATH` | `main/app_main.cpp` |
+| Matter 温湿度 | 设置 `ESP_MATTER_PATH` | `main/app_main.cpp` + LVGL QR |
 
-两种模式共用 `components/gxhtc3` 驱动，Matter 模式仅启用 I2C + 温湿度（`CONFIG_SZPI_MATTER_MINIMAL=y`）。
+两种模式共用 `components/gxhtc3` 驱动。Matter 模式启用 LCD/LVGL，在屏幕上显示配网 QR 码。
 
 ## 参考
 
